@@ -2,7 +2,7 @@
 # 2020-09-15 -- indexation
 # prepare session
 # Ilya Kashnitsky, ilya.kashnitsky@gmail.com
-#===============================================================================    
+#===============================================================================
 library(tidyverse)
 library(magrittr)
 library(patchwork)
@@ -19,7 +19,7 @@ library(ggforce)
 
 library(DemoTools)
 
-source("R/fun-inset-cph-box.R")
+source("src/fun-inset-cph-box.R")
 
-source("R/fun-topals-fit.R")
-source("R/fun-show-topals.R")
+source("src/fun-topals-fit.R")
+source("src/fun-show-topals.R")

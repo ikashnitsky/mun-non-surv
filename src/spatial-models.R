@@ -4,34 +4,34 @@
 # Ilya Kashnitsky, ilya.kashnitsky@gmail.com
 #===============================================================================
 
-source("R/prepare-session.R")
+source("src/prepare-session.R")
 
 
 # load data
-load("data/topals-pooled-5y.rda")
-load("data/geodata-dk.rda")
+load("dat/topals-pooled-5y.rda")
+load("dat/geodat-dk.rda")
 
-load("data/df_le_comapre.rda")
-load("data/non-surv-5065.rda")
+load("dat/df_le_comapre.rda")
+load("dat/non-surv-5065.rda")
 
 
 # correlate q5065 and e0
 
 df <- left_join(df_le_comapre, df_q5065)
 
-df %>% 
+df %>%
     ggplot(aes(life_exp, q5065))+
     geom_point()+
     facet_grid(period~sex)
 
-df %>% 
-    filter(!sex=="b") %>% 
-    group_by(period, id) %>% 
+df %>%
+    filter(!sex=="b") %>%
+    group_by(period, id) %>%
     summarise(
         e = e,
         r_e0 = life_exp[1] / life_exp[2],
         r_q5065 = q5065[1] / q5065[2]
-    ) %>% 
+    ) %>%
     ggplot(aes(r_e0, r_q5065, size = e))+
     stat_smooth(geom = "path", method = "lm", se = F, show.legend = FALSE)+
     geom_point(shape = 1)+
@@ -41,7 +41,7 @@ df %>%
     facet_grid(~period)+
     dark_theme_minimal(base_family = font_rc)+
     theme(
-        legend.position = c(.6,.02), 
+        legend.position = c(.6,.02),
         legend.justification = c(1,0)
     )+
     labs(
@@ -52,5 +52,5 @@ df %>%
 
 
 
-ggsave(filename = "figures/life-exp-non-surv-sex-ratios.pdf", 
+ggsave(filename = "fig/life-exp-non-surv-sex-ratios.pdf",
        width = 7, height = 4)
