@@ -45,5 +45,5 @@ map_pop <- last_plot()
 
 map_pop_zoom <- map_pop %>% inset_cph_box()
 
-ggsave("fig/map-mun-pop-sizes.pdf", map_pop_zoom, device = cairo_pdf,
+ggsave("fig/map-mun-pop-sizes.pdf", map_pop_zoom, device = cairo_pdf, bg = "#ffffff",
        width = 6, height = 6)
