@@ -10,14 +10,18 @@ library(paletteer)
 library(hrbrthemes)
 library(sf)
 
-library(showtext)
-font_add_google("Roboto Condensed", "Roboto Condensed")
-showtext_auto()
+# library(showtext)
+# font_add_google("Roboto Condensed", "Roboto Condensed")
+# showtext_auto()
 library(ggdark)
 library(cowplot)
 library(ggforce)
+library(prismatic)
 
-library(DemoTools)
+# remotes::install_github("jimjam-slam/ggflags")
+library(ggflags)
+
+# library(DemoTools)
 
 source("src/fun-inset-cph-box.R")
 

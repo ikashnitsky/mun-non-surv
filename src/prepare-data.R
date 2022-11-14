@@ -445,6 +445,8 @@ save(pooled_5y, std_5y, file = "dat/pooled_5y.rda")
 # explore the data --------------------------------------------------------
 options(scipen = 999)
 
+load("dat/pooled_5y.rda")
+
 # total population
 death_rates %>%
     filter(year == "2019") %>%
@@ -452,9 +454,12 @@ death_rates %>%
     summarise(e = exposure %>% sum %>% divide_by(1e3) %>% round()) %>%
     arrange(e) %>%
     mutate(name = name %>% as_factor()) %>%
-    ggplot(aes(e, name))+
+    ggplot(aes(e, name, fill = e > 50))+
     geom_col()+
-    geom_vline(xintercept = 50)+
+    scale_fill_manual(
+        values = c("#4ebaaa" %>% clr_darken, "#4ebaaa"), guide = "none"
+    )+
+    geom_vline(xintercept = 50, color = "#7c8500")+
     geom_text(
         aes(label = e),
         hjust = 0, nudge_x = 10,
@@ -462,7 +467,11 @@ death_rates %>%
         family = font_rc
     )+
     scale_x_continuous(expand = expansion(mult = c(0, .07)))+
-    dark_theme_minimal(base_family = font_rc)+
+    theme_minimal(base_family = font_rc)+
+    theme(
+        plot.background = element_rect(fill = "#dadada", color = NA),
+        panel.grid.minor = element_blank()
+    )+
     labs(subtitle = "Mid year population, 2019",
          y = NULL, x = "Population, thousands")
 
@@ -475,9 +484,12 @@ death_rates %>%
     summarise(d = death %>% sum) %>%
     arrange(d) %>%
     mutate(name = name %>% as_factor()) %>%
-    ggplot(aes(d, name))+
+    ggplot(aes(d, name, fill = d > 500))+
     geom_col()+
-    geom_vline(xintercept = 500)+
+    scale_fill_manual(
+        values = c("#e4e65e" %>% clr_darken, "#e4e65e"), guide = "none"
+    )+
+    geom_vline(xintercept = 500, color = "#005b4f")+
     geom_text(
         aes(label = d),
         hjust = 0, nudge_x = 30,
@@ -485,7 +497,11 @@ death_rates %>%
         family = font_rc
     )+
     scale_x_continuous(expand = expansion(mult = c(0, .07)))+
-    dark_theme_minimal(base_family = font_rc)+
+    theme_minimal(base_family = font_rc)+
+    theme(
+        plot.background = element_rect(fill = "#dadada", color = NA),
+        panel.grid.minor = element_blank()
+    )+
     labs(subtitle = "Deaths, 2019",
          y = NULL, x = "Deaths")
 
@@ -493,7 +509,8 @@ gg_death <- last_plot()
 
 out <- gg_pop + gg_death
 
-ggsave("fig/explore-population-size.pdf", out, width = 12, height = 12)
+ggsave("fig/explore-population-size.pdf", out,
+       width = 12, height = 12, device = cairo_pdf)
 
 
 # proportion of non-survival 50-65 ----------------------------------------

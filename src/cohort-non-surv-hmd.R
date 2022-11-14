@@ -16,12 +16,12 @@ library(MortalityLaws)
 devtools::source_gist("0f93062f2b67eeac69949554027fa84f")
 
 
-dk_coh_m <- fread_hmd("~/dat/hmd/c_lt_male/mltcoh_1x1/DNK.mltcoh_1x1.txt")
+dk_coh_m <- fread_hmd("~/data/hmd/c_lt_male/mltcoh_1x1/DNK.mltcoh_1x1.txt")
 
 dk_coh_m$Year %>% range()
 
 
-dk_dr <- fread_hmd("~/dat/hmd/c_death_rates/cMx_1x1/DNK.cMx_1x1.txt") %>%
+dk_dr <- fread_hmd("~/data/hmd/c_death_rates/cMx_1x1/DNK.cMx_1x1.txt") %>%
     janitor::clean_names()
 
 q5065 <- dk_dr %>%
