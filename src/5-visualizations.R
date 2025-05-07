@@ -145,7 +145,7 @@ dk_map %>%
             size = 4.5, shape = 1, stroke = 1, color = "#da26fa")+
     scale_fill_fermenter(palette = "BrBG",
                          breaks = seq(6, 11, 1))+
-    cowplot::theme_map(font_family = font_rc, font_size = 14)+
+    cowplot::theme_map(font_family = "ah", font_size = 14)+
     theme(legend.position = c(1,  .9),
           legend.justification = c(1, 1),
           legend.background = element_blank(),
@@ -162,7 +162,7 @@ div_q5065 <- last_plot()
 
 div_q5065_zoom <- div_q5065 %>% inset_cph_box(y = .44)
 
-maps_topals_div <- div_le_zoom + div_q5065_zoom
+maps_topals_div <- div_le_zoom + div_q5065_zoom + plot_annotation(tag_levels = "A")
 
 ggsave("fig/f3-maps-le-q5065-div.pdf", maps_topals_div,
        width = 12, height = 6, device = cairo_pdf)
