@@ -4,56 +4,54 @@
 # Ilya Kashnitsky, ilya.kashnitsky@gmail.com
 #===============================================================================
 
-
-
 # pacman ------------------------------------------------------------------
-
 
 # First, install pacman to deal easier with other packages
 # solution by Sacha Epskamp from: http://stackoverflow.com/a/9341833/4638884
-if (!require('pacman',character.only = TRUE)){
-    install.packages('pacman', dep = TRUE)
-    if (!require('pacman', character.only = TRUE))
-        stop("Package not found")
+if (!require('pacman', character.only = TRUE)) {
+  install.packages('pacman', dep = TRUE)
+  if (!require('pacman', character.only = TRUE)) {
+    stop("Package not found")
+  }
 }
 
 # from github -------------------------------------------------------------
 
-
-
 # ggflags, if not installed -- install
-if (!require('ggflags',character.only = TRUE)){
-    remotes::install_github("jimjam-slam/ggflags", upgrade = "never")
-    if (!require('pacman', character.only = TRUE))
-        stop("Package not found")
+if (!require('ggflags', character.only = TRUE)) {
+  remotes::install_github("jimjam-slam/ggflags", upgrade = "never")
+  if (!require('pacman', character.only = TRUE)) {
+    stop("Package not found")
+  }
 }
 
 # libraries ---------------------------------------------------------------
 
 pacman::p_load(
-    install = T, update = F,
+  install = T,
+  update = F,
 
-    tidyverse,
-    magrittr,
-    fs,
-    readxl,
-    devtools,
-    remotes,
-    patchwork,
-    vroom,
-    sf,
-    rmapshaper,
-    rgeoda,
-    matrixStats,
-    janitor,
-    showtext,
-    hrbrthemes,
-    ggflags,
-    ggforce,
-    sysfonts,
-    cowplot,
-    prismatic,
-    pdftools
+  tidyverse,
+  magrittr,
+  fs,
+  readxl,
+  devtools,
+  remotes,
+  patchwork,
+  vroom,
+  sf,
+  rmapshaper,
+  rgeoda,
+  matrixStats,
+  janitor,
+  showtext,
+  hrbrthemes,
+  ggflags,
+  ggforce,
+  sysfonts,
+  cowplot,
+  prismatic,
+  pdftools
 )
 
 
@@ -84,7 +82,6 @@ pal <- c("#b085f5", "#bb4d00")
 # load own functions ------------------------------------------------------
 
 source("src/1-own-functions.R")
-
 
 # session info ------------------------------------------------------------
 
